@@ -1,0 +1,22 @@
+.tablex-cell {
+    display: inline-block;
+    padding: .25rem .5rem;
+}
+
+.tablex-header {
+    background-color: #444;
+    color: #fff;
+    text-align: center;
+}
+
+.tablex-row {
+    width: 100%;
+    display: flex;
+}
+
+.wrapper {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+}
+
