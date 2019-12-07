@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { getCellData } from '../utils/getCellData'
 
 export class TablexRows extends React.Component {
 
@@ -17,7 +18,7 @@ export class TablexRows extends React.Component {
 
   renderCells = (row) => {
     return this.props.columns.map((cell, index) => {
-      const cellData = TablexRows.getCellData(row, cell)
+      const cellData = getCellData(row, cell)
       return <div
         key={`cell-${index}`}
         className={'tablex-cell'}
@@ -27,15 +28,6 @@ export class TablexRows extends React.Component {
         {cellData}
       </div>
     })
-  }
-
-  static getCellData (row, cell) {
-    if (typeof cell.accessor === 'function') {
-      return cell.accessor(row)
-    } else if (typeof cell.accessor === 'string') {
-      return row[cell.accessor]
-    }
-    return null
   }
 
   render () {
