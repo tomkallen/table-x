@@ -8,7 +8,7 @@ export class TablexHeader extends React.Component {
       <div
         onClick={()=>this.props.handleSort(cell)}
         key={`header-${index}`}
-        className={'tablex-cell tablex-header'}
+        className={'tablex-cell tablex-cell-header'}
         style={{ width: cell.width + '%' }}
       >
         {cell.name}
@@ -16,7 +16,7 @@ export class TablexHeader extends React.Component {
   }
 
   render() {
-    return <div className={'tablex-row'}>{this.renderHeaderCells()}</div>
+    return <div className={'tablex-row-header'}>{this.renderHeaderCells()}</div>
   }
 }
 

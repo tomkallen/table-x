@@ -11,12 +11,13 @@ export class Tablex extends React.Component {
     this.setState((state) => ({ sortBy: cell.name, reverseSort: !state.reverseSort }))
   }
 
-  createHeader = () => this.props.showHeader
-    ? <TablexHeader
+  createHeader = () => {
+    if (!this.props.showHeader) return null
+    return <TablexHeader
       columns={this.props.columns}
       handleSort={this.handleSort}
     />
-    : null
+  }
 
   createFilters = () => {
     if (!this.props.filterable) return null
@@ -25,11 +26,6 @@ export class Tablex extends React.Component {
       filters={this.state.filters}
       columns={this.props.columns}
     />
-  }
-
-  updateFilterValue = (cellName, value) => {
-    const filter = { [cellName]: value }
-    this.setState({ filters: { ...this.state.filters, ...filter } })
   }
 
   createRows = () =>
@@ -42,12 +38,18 @@ export class Tablex extends React.Component {
       reverseSort={this.state.reverseSort}
     />
 
+  updateFilterValue = (cellName, value) => {
+    const filter = { [cellName]: value }
+    this.setState({ filters: { ...this.state.filters, ...filter } })
+  }
+
   render () {
-    return <div className={'tablex'}>
-      {this.createHeader()}
-      {this.createFilters()}
-      {this.createRows()}
-    </div>
+    return (
+      <div className={'tablex'}>
+        {this.createHeader()}
+        {this.createFilters()}
+        {this.createRows()}
+      </div>)
   }
 }
 

@@ -1,16 +1,6 @@
 .tablex * {
     box-sizing: border-box;
-}
-
-.tablex-cell {
-    display: inline-block;
-    padding: .25rem .5rem;
-}
-
-.tablex-header {
-    background-color: #444;
-    color: #fff;
-    text-align: center;
+    font-family: sans-serif;
 }
 
 .tablex-row {
@@ -22,6 +12,24 @@
     background-color: #eee;
 }
 
+.tablex-cell {
+    display: inline-block;
+    padding: .25rem .5rem;
+}
+
+.tablex-row-header {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    background-color: #444;
+}
+
+.tablex-cell-header {
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 .tablex-input {
     border: none;
     outline: none;
@@ -30,7 +38,6 @@
     border-bottom: 1px solid #444;
     padding: .25rem .5rem;
 }
-
 
 .wrapper {
     width: 600px;
