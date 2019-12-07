@@ -2,6 +2,7 @@
   "name": "table-x",
   "version": "0.0.1",
   "private": false,
+  "license": "MIT",
   "dependencies": {
     "prop-types": "15.7.2",
     "react": "16.12.0",

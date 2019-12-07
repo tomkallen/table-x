@@ -10,7 +10,11 @@ export class Tablex extends React.Component {
       : null
 
   createRows = () =>
-    <TablexRows columns={this.props.columns} rows={this.props.rows}/>
+    <TablexRows
+      onCellClick={this.props.onCellClick}
+      columns={this.props.columns}
+      rows={this.props.rows}
+    />
 
   render () {
     return [this.createHeader(), this.createRows()]
@@ -20,9 +24,11 @@ export class Tablex extends React.Component {
 Tablex.propTypes = {
   columns: PropTypes.array.isRequired,
   rows: PropTypes.array.isRequired,
-  showHeader: PropTypes.bool
+  showHeader: PropTypes.bool,
+  onCellClick: PropTypes.func
 }
 
 Tablex.defaultProps = {
-  showHeader: true
+  showHeader: true,
+  onCellClick: () => {}
 }

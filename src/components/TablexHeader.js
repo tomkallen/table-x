@@ -1,13 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export function TablexHeader ({ columns }) {
-  return <div className={'tablex-row'}>
-    {columns.map(cell =>
+export class TablexHeader extends React.Component {
+
+  renderHeaderCells = () => {
+    return this.props.columns.map((cell, index) =>
       <div
+        key={`header-${index}`}
+        className={'tablex-cell tablex-header'}
         style={{ width: cell.width + '%' }}
-        className={'tablex-cell tablex-header'}>{cell.name}</div>)}
-  </div>
+      >
+        {cell.name}
+      </div>)
+  }
+
+  render() {
+    return <div className={'tablex-row'}>{this.renderHeaderCells()}</div>
+  }
 }
 
 TablexHeader.propTypes = {
