@@ -5,7 +5,19 @@ import { getCellData } from '../utils/getCellData'
 export class TablexRows extends React.Component {
 
   renderRows = () => {
-    return this.props.rows.map((row, index) => {
+    let sortMethod = null
+    let rowData = this.props.rows.slice(0)
+    if (this.props.sortBy) {
+      sortMethod = this.props.columns.find(cell => cell.name === (this.props.sortBy)).sort
+    }
+    if (sortMethod) {
+      rowData.sort(sortMethod)
+      if (this.props.reverseSort) {
+        rowData = rowData.reverse()
+      }
+    }
+
+    return rowData.map((row, index) => {
       const cell = this.renderCells(row)
       return <div
         key={`row-${index}`}
@@ -38,5 +50,7 @@ export class TablexRows extends React.Component {
 TablexRows.propTypes = {
   rows: PropTypes.array.isRequired,
   columns: PropTypes.array.isRequired,
-  onCellClick: PropTypes.func.isRequired
+  onCellClick: PropTypes.func.isRequired,
+  sortBy: PropTypes.string,
+  reverseSort: PropTypes.bool
 }

@@ -4,13 +4,26 @@ import { TablexRows, TablexHeader } from './index'
 
 export class Tablex extends React.Component {
 
-  createHeader = () => this.props.showHeader ? <TablexHeader columns={this.props.columns}/> : null
+  state = { sortBy: null, reverseSort: true }
+
+  handleSort = (cell) => {
+    this.setState((state) => ({ sortBy: cell.name, reverseSort: !state.reverseSort }))
+  }
+
+  createHeader = () => this.props.showHeader
+    ? <TablexHeader
+      columns={this.props.columns}
+      handleSort={this.handleSort}
+    />
+    : null
 
   createRows = () =>
     <TablexRows
       onCellClick={this.props.onCellClick}
       columns={this.props.columns}
       rows={this.props.rows}
+      sortBy={this.state.sortBy}
+      reverseSort={this.state.reverseSort}
     />
 
   render () {
