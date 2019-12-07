@@ -4,17 +4,21 @@
 }
 
 .tablex-row {
+    min-height: 2rem;
     width: 100%;
     display: flex;
+
+}
+
+.tablex-row.shrink .tablex-cell {
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
 
 .tablex-row:nth-child(2n) {
     background-color: #eee;
-}
-
-.tablex-row:hover {
-    background-color: #888;
-    color: #fff;
 }
 
 .tablex-cell {

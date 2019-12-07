@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { getCellData } from '../utils/getCellData'
+import { TablexRow } from './index'
 
 export class TablexRows extends React.Component {
+
+  state = { expand: false }
 
   renderRows = () => {
     let sortMethod = null
@@ -31,13 +34,8 @@ export class TablexRows extends React.Component {
     }
 
     return rowData.map((row, index) => {
-      const cell = this.renderCells(row)
-      return <div
-        key={`row-${index}`}
-        className={'tablex-row'}
-      >
-        {cell}
-      </div>
+      const cells = this.renderCells(row)
+      return <TablexRow cells={cells} index={index}/>
     })
   }
 
