@@ -13,6 +13,7 @@ class App extends React.Component {
     return <div className={'wrapper'}>
       <Tablex
         columns={structure}
+        filterable
         rows={data}
         onCellClick={this.onCellClick}
       />

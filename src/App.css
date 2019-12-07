@@ -1,3 +1,7 @@
+.tablex * {
+    box-sizing: border-box;
+}
+
 .tablex-cell {
     display: inline-block;
     padding: .25rem .5rem;
@@ -14,9 +18,24 @@
     display: flex;
 }
 
+.tablex-row:nth-child(2n) {
+    background-color: #eee;
+}
+
+.tablex-input {
+    border: none;
+    outline: none;
+    margin: 0;
+    width: 100%;
+    border-bottom: 1px solid #444;
+    padding: .25rem .5rem;
+}
+
+
 .wrapper {
-    width: 80%;
+    width: 600px;
     margin: 0 auto;
     padding: 0;
+    border: 1px solid black;
 }
 

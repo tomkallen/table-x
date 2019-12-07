@@ -1,4 +1,5 @@
-import {TablexRows} from './TablexRows'
-import {TablexHeader} from './TablexHeader'
+import { TablexRows } from './TablexRows'
+import { TablexHeader } from './TablexHeader'
+import { TablexFilter } from './TablexFilter'
 
-export {TablexHeader, TablexRows}
+export { TablexHeader, TablexRows, TablexFilter }

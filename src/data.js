@@ -8,5 +8,5 @@ export const data = [
 export const structure = [
   { name: 'id', accessor: d => d.id, width: 33.3, sort: (a, b) => a.id - b.id },
   { name: 'Name', accessor: 'name', width: 33.3 },
-  { name: 'Code', accessor: d => d.code, width: 33.3 },
+  { name: 'Code', accessor: d => d.code, width: 33.3, filter: true },
 ]

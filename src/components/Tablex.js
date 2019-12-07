@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { TablexRows, TablexHeader } from './index'
+import { TablexRows, TablexHeader,TablexFilter } from './index'
 
 export class Tablex extends React.Component {
 
@@ -17,6 +17,11 @@ export class Tablex extends React.Component {
     />
     : null
 
+  createFilters = () => {
+    if (!this.props.filterable) return null
+    return <TablexFilter columns={this.props.columns}/>
+  }
+
   createRows = () =>
     <TablexRows
       onCellClick={this.props.onCellClick}
@@ -27,10 +32,11 @@ export class Tablex extends React.Component {
     />
 
   render () {
-    return <>
+    return <div className={'tablex'}>
       {this.createHeader()}
+      {this.createFilters()}
       {this.createRows()}
-    </>
+    </div>
   }
 }
 
@@ -38,10 +44,12 @@ Tablex.propTypes = {
   columns: PropTypes.array.isRequired,
   rows: PropTypes.array.isRequired,
   showHeader: PropTypes.bool,
+  filterable: PropTypes.bool,
   onCellClick: PropTypes.func
 }
 
 Tablex.defaultProps = {
   showHeader: true,
+  filterable: false,
   onCellClick: () => {}
 }
