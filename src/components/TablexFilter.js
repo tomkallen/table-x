@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export class TablexFilter extends Component {
+
+  onFilterChange = (event, cellName) => {
+    const value = event.target.value
+    this.props.updateFilterValue(cellName, value)
+  }
 
   renderInput = (cell) => {
     if (!cell.filter) return null
     return <input
       className={'tablex-input'}
-      onChange={() => {}}
+      onChange={(event) => this.onFilterChange(event, cell.name)}
       type="text"
     />
   }
@@ -26,3 +32,9 @@ export class TablexFilter extends Component {
     return <div className={'tablex-row'}>{this.renderFilterCells()}</div>
   }
 }
+
+TablexFilter.propTypes = {
+  filters: PropTypes.object.isRequired,
+  updateFilterValue: PropTypes.func.isRequired
+}
+

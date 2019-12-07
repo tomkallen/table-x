@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { TablexRows, TablexHeader,TablexFilter } from './index'
+import { TablexRows, TablexHeader, TablexFilter } from './index'
 
 export class Tablex extends React.Component {
 
-  state = { sortBy: null, reverseSort: true }
+  state = { sortBy: null, reverseSort: true, filters: {} }
 
   handleSort = (cell) => {
     this.setState((state) => ({ sortBy: cell.name, reverseSort: !state.reverseSort }))
@@ -19,7 +19,16 @@ export class Tablex extends React.Component {
 
   createFilters = () => {
     if (!this.props.filterable) return null
-    return <TablexFilter columns={this.props.columns}/>
+    return <TablexFilter
+      updateFilterValue={this.updateFilterValue}
+      filters={this.state.filters}
+      columns={this.props.columns}
+    />
+  }
+
+  updateFilterValue = (cellName, value) => {
+    const filter = { [cellName]: value }
+    this.setState({ filters: { ...this.state.filters, ...filter } })
   }
 
   createRows = () =>
@@ -27,6 +36,7 @@ export class Tablex extends React.Component {
       onCellClick={this.props.onCellClick}
       columns={this.props.columns}
       rows={this.props.rows}
+      filters={this.state.filters}
       sortBy={this.state.sortBy}
       reverseSort={this.state.reverseSort}
     />

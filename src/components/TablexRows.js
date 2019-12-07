@@ -7,6 +7,19 @@ export class TablexRows extends React.Component {
   renderRows = () => {
     let sortMethod = null
     let rowData = this.props.rows.slice(0)
+    if (Object.values(this.props.filters).filter(Boolean).length) {
+      rowData = rowData.filter((row) => {
+        let visible = true
+        Object.keys(this.props.filters).forEach((filter) => {
+          let cell = this.props.columns.find((cell) => cell.name === filter)
+          if (!String(getCellData(row, cell)).includes(String(this.props.filters[cell.name]))) {
+            visible = false
+          }
+        })
+        return visible
+      })
+    }
+
     if (this.props.sortBy) {
       sortMethod = this.props.columns.find(cell => cell.name === (this.props.sortBy)).sort
     }
@@ -52,5 +65,6 @@ TablexRows.propTypes = {
   columns: PropTypes.array.isRequired,
   onCellClick: PropTypes.func.isRequired,
   sortBy: PropTypes.string,
-  reverseSort: PropTypes.bool
+  reverseSort: PropTypes.bool,
+  filters: PropTypes.object
 }
