@@ -7,6 +7,7 @@ export class Tablex extends React.Component {
   state = { sortBy: null, reverseSort: true, filters: {} }
 
   handleSort = (cell) => {
+    if (!cell.sort) return
     this.setState((state) => ({ sortBy: cell.name, reverseSort: !state.reverseSort }))
   }
 
