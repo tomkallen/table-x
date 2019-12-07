@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export class TablexRow extends Component {
-  state = {expand: false}
+  state = { expand: false }
   getRowClassNames = () => {
     if (!this.state.expand) return 'tablex-row shrink'
     return 'tablex-row'
@@ -10,7 +11,6 @@ export class TablexRow extends Component {
   render () {
     return (
       <div
-        key={`row-${this.props.index}`}
         onClick={() => this.setState((state) => ({ expand: !state.expand }))}
         className={this.getRowClassNames()}
       >
@@ -18,4 +18,8 @@ export class TablexRow extends Component {
       </div>
     )
   }
+}
+
+TablexRow.propTypes = {
+  cells: PropTypes.array.isRequired
 }

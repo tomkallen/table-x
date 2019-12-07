@@ -35,7 +35,7 @@ export class TablexRows extends React.Component {
 
     return rowData.map((row, index) => {
       const cells = this.renderCells(row)
-      return <TablexRow cells={cells} index={index}/>
+      return <TablexRow cells={cells} key={`row-${index}`}/>
     })
   }
 
