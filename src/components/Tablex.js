@@ -4,10 +4,7 @@ import { TablexRows, TablexHeader } from './index'
 
 export class Tablex extends React.Component {
 
-  createHeader = () =>
-    this.props.showHeader
-      ? <TablexHeader columns={this.props.columns}/>
-      : null
+  createHeader = () => this.props.showHeader ? <TablexHeader columns={this.props.columns}/> : null
 
   createRows = () =>
     <TablexRows
@@ -17,7 +14,10 @@ export class Tablex extends React.Component {
     />
 
   render () {
-    return [this.createHeader(), this.createRows()]
+    return <>
+      {this.createHeader()}
+      {this.createRows()}
+    </>
   }
 }
 
