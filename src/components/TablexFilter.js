@@ -11,7 +11,7 @@ export class TablexFilter extends Component {
   renderInput = (cell) => {
     if (!cell.filter) return null
     return <input
-      className={'tablex-input'}
+      className={'tablex-cell-input'}
       onChange={(event) => this.onFilterChange(event, cell.name)}
       type="text"
     />
@@ -21,7 +21,7 @@ export class TablexFilter extends Component {
     return this.props.columns.map((cell, index) =>
       <div
         key={`filter-${index}`}
-        className={'tablex-cell tablex-filter'}
+        className={'tablex-cell tablex-cell-filter'}
         style={{ width: cell.width + '%' }}
       >
         {this.renderInput(cell)}
@@ -29,7 +29,7 @@ export class TablexFilter extends Component {
   }
 
   render () {
-    return <div className={'tablex-row'}>{this.renderFilterCells()}</div>
+    return <div className={'tablex-row-filter'}>{this.renderFilterCells()}</div>
   }
 }
 
