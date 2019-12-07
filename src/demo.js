@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+import './css/tablex.css'
 import { data, structure } from './data'
 import { Tablex } from './components/Tablex'
 
