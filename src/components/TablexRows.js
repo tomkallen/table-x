@@ -35,7 +35,11 @@ export class TablexRows extends React.Component {
 
     return rowData.map((row, index) => {
       const cells = this.renderCells(row)
-      return <TablexRow cells={cells} key={`row-${index}`}/>
+      return <TablexRow
+        cells={cells}
+        key={`row-${index}`}
+        rowClassName={this.props.rowClassName}
+      />
     })
   }
 
@@ -46,10 +50,10 @@ export class TablexRows extends React.Component {
       const cellClassName = this.props.cellClassName || 'tablex-cell'
       const className = createClassNames(columnClassName, cellClassName)
       return <div
-        key={`cell-${index}`}
         className={className}
-        style={{ width: cell.width + '%' }}
+        key={`cell-${index}`}
         onClick={() => this.props.onCellClick(row, cellData)}
+        style={{ width: cell.width + '%' }}
       >
         {cellData}
       </div>
@@ -62,13 +66,13 @@ export class TablexRows extends React.Component {
 }
 
 TablexRows.propTypes = {
-  rows: PropTypes.array.isRequired,
-  columns: PropTypes.array.isRequired,
-  onCellClick: PropTypes.func.isRequired,
-  sortBy: PropTypes.string,
-  reverseSort: PropTypes.bool,
-  filters: PropTypes.object,
-  columnClassesFromNames: PropTypes.bool,
   cellClassName: PropTypes.string,
-  rowClassName: PropTypes.string
+  columns: PropTypes.array.isRequired,
+  columnClassesFromNames: PropTypes.bool,
+  filters: PropTypes.object,
+  onCellClick: PropTypes.func.isRequired,
+  reverseSort: PropTypes.bool,
+  rows: PropTypes.array.isRequired,
+  rowClassName: PropTypes.string,
+  sortBy: PropTypes.string,
 }

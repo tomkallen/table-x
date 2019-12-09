@@ -22,23 +22,23 @@ export class Tablex extends React.Component {
   createFilters = () => {
     if (!this.props.filterable) return null
     return <TablexFilter
-      updateFilterValue={this.updateFilterValue}
-      filters={this.state.filters}
       columns={this.props.columns}
+      filters={this.state.filters}
+      updateFilterValue={this.updateFilterValue}
     />
   }
 
   createRows = () =>
     <TablexRows
       cellClassName={this.props.cellClassName}
-      rowClassName={this.props.rowClassName}
       columnClassesFromNames={this.props.columnClassesFromNames}
-      onCellClick={this.props.onCellClick}
       columns={this.props.columns}
-      rows={this.props.rows}
       filters={this.state.filters}
-      sortBy={this.state.sortBy}
+      onCellClick={this.props.onCellClick}
       reverseSort={this.state.reverseSort}
+      rows={this.props.rows}
+      rowClassName={this.props.rowClassName}
+      sortBy={this.state.sortBy}
     />
 
   updateFilterValue = (cellName, value) => {
@@ -48,28 +48,30 @@ export class Tablex extends React.Component {
 
   render () {
     return (
-      <div className={'tablex'}>
+      <div className={this.props.tableClassName || 'tablex'}>
         {this.createHeader()}
         {this.createFilters()}
         {this.createRows()}
-      </div>)
+      </div>
+    )
   }
 }
 
 Tablex.propTypes = {
+  cellClassName: PropTypes.string,
   columns: PropTypes.array.isRequired,
-  rows: PropTypes.array.isRequired,
-  showHeader: PropTypes.bool,
+  columnClassesFromNames: PropTypes.bool,
   filterable: PropTypes.bool,
   onCellClick: PropTypes.func,
-  columnClassesFromNames: PropTypes.bool,
-  cellClassName: PropTypes.string,
-  rowClassName: PropTypes.string
+  rows: PropTypes.array.isRequired,
+  rowClassName: PropTypes.string,
+  showHeader: PropTypes.bool,
+  tableClassName: PropTypes.string,
 }
 
 Tablex.defaultProps = {
-  showHeader: true,
-  filterable: false,
   columnClassesFromNames: false,
+  filterable: false,
+  showHeader: true,
   onCellClick: () => {}
 }

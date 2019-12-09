@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { createClassNames } from '../utils/helpers'
 
 export class TablexRow extends Component {
   state = { expand: false }
   getRowClassNames = () => {
-    if (!this.state.expand) return 'tablex-row shrink'
-    return 'tablex-row'
+    const className = this.props.rowClassName || 'tablex-row'
+    if (!this.state.expand) return createClassNames(className, 'shrink')
+    return className
   }
 
   render () {
     return (
       <div
-        onClick={() => this.setState((state) => ({ expand: !state.expand }))}
         className={this.getRowClassNames()}
+        onClick={() => this.setState((state) => ({ expand: !state.expand }))}
       >
         {this.props.cells}
       </div>
