@@ -16,6 +16,7 @@ class App extends React.Component {
         filterable
         rows={data}
         onCellClick={this.onCellClick}
+        columnClassesFromNames
       />
     </div>
   }

@@ -19,7 +19,7 @@ export const data = [
 
 export const structure = [
   { name: 'id', accessor: d => d.id, width: 25, sort: (a, b) => a.id - b.id, filter: true },
-  { name: 'Name', accessor: 'name', width: 50, filter: true },
+  { name: 'Basic user name', accessor: 'name', width: 50, filter: true },
   { name: 'Code', accessor: d => d.code, width: 25, filter: true },
 
 ]

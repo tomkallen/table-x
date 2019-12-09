@@ -30,6 +30,9 @@ export class Tablex extends React.Component {
 
   createRows = () =>
     <TablexRows
+      cellClassName={this.props.cellClassName}
+      rowClassName={this.props.rowClassName}
+      columnClassesFromNames={this.props.columnClassesFromNames}
       onCellClick={this.props.onCellClick}
       columns={this.props.columns}
       rows={this.props.rows}
@@ -58,11 +61,15 @@ Tablex.propTypes = {
   rows: PropTypes.array.isRequired,
   showHeader: PropTypes.bool,
   filterable: PropTypes.bool,
-  onCellClick: PropTypes.func
+  onCellClick: PropTypes.func,
+  columnClassesFromNames: PropTypes.bool,
+  cellClassName: PropTypes.string,
+  rowClassName: PropTypes.string
 }
 
 Tablex.defaultProps = {
   showHeader: true,
   filterable: false,
+  columnClassesFromNames: false,
   onCellClick: () => {}
 }

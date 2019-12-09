@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getCellData } from '../utils/getCellData'
+import { getClassFromName, createClassNames, getCellData } from '../utils/helpers'
 import { TablexRow } from './index'
 
 export class TablexRows extends React.Component {
@@ -42,9 +42,12 @@ export class TablexRows extends React.Component {
   renderCells = (row) => {
     return this.props.columns.map((cell, index) => {
       const cellData = getCellData(row, cell)
+      const columnClassName = this.props.columnClassesFromNames ? getClassFromName(cell.name) : ''
+      const cellClassName = this.props.cellClassName || 'tablex-cell'
+      const className = createClassNames(columnClassName, cellClassName)
       return <div
         key={`cell-${index}`}
-        className={'tablex-cell'}
+        className={className}
         style={{ width: cell.width + '%' }}
         onClick={() => this.props.onCellClick(row, cellData)}
       >
@@ -64,5 +67,8 @@ TablexRows.propTypes = {
   onCellClick: PropTypes.func.isRequired,
   sortBy: PropTypes.string,
   reverseSort: PropTypes.bool,
-  filters: PropTypes.object
+  filters: PropTypes.object,
+  columnClassesFromNames: PropTypes.bool,
+  cellClassName: PropTypes.string,
+  rowClassName: PropTypes.string
 }
